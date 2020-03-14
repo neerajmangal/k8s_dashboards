@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 3,
-  "iteration": 1583486670243,
+  "iteration": 1584216581343,
   "links": [],
   "panels": [
     {
@@ -28,7 +27,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "$datasource",
+      "datasource": "Prometheus",
       "format": "dateTimeAsIso",
       "gauge": {
         "maxValue": 100,
@@ -83,7 +82,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "kube_pod_created{pod=~\"$Pod\"} * 1000",
+          "expr": "kube_pod_created{pod=~\"$Pod\", cluster=~\"$k8s_cluster\"} * 1000",
           "instant": true,
           "refId": "A"
         }
@@ -112,7 +111,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "$datasource",
+      "datasource": "Prometheus",
       "format": "dtdurationms",
       "gauge": {
         "maxValue": 100,
@@ -197,7 +196,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "$datasource",
+      "datasource": "Prometheus",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -277,7 +276,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "$datasource",
+      "datasource": "Prometheus",
       "description": "",
       "format": "none",
       "gauge": {
@@ -391,7 +390,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "$datasource",
+      "datasource": "Prometheus",
       "description": "",
       "format": "none",
       "gauge": {
@@ -472,7 +471,7 @@
     {
       "cacheTimeout": null,
       "columns": [],
-      "datasource": "$datasource",
+      "datasource": "Prometheus",
       "fontSize": "100%",
       "gridPos": {
         "h": 5,
@@ -492,6 +491,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -509,6 +509,7 @@
         },
         {
           "alias": "Memory Limits",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -526,6 +527,7 @@
         },
         {
           "alias": "Memory Requested",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -542,6 +544,7 @@
         },
         {
           "alias": "CPU Limits",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -558,6 +561,7 @@
         },
         {
           "alias": "CPU Requested",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -574,6 +578,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -631,7 +636,7 @@
     },
     {
       "columns": [],
-      "datasource": "$datasource",
+      "datasource": "Prometheus",
       "fontSize": "100%",
       "gridPos": {
         "h": 4,
@@ -650,6 +655,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -666,6 +672,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -706,7 +713,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "$datasource",
+      "datasource": "Prometheus",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -824,7 +831,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
-      "datasource": "$datasource",
+      "datasource": "Prometheus",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -937,7 +944,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
-      "datasource": "$datasource",
+      "datasource": "Prometheus",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1052,7 +1059,7 @@
     },
     {
       "columns": [],
-      "datasource": "$datasource",
+      "datasource": "Prometheus",
       "fontSize": "100%",
       "gridPos": {
         "h": 4,
@@ -1071,6 +1078,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1087,6 +1095,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1118,7 +1127,7 @@
     },
     {
       "columns": [],
-      "datasource": "$datasource",
+      "datasource": "Prometheus",
       "fontSize": "100%",
       "gridPos": {
         "h": 4,
@@ -1137,6 +1146,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1168,7 +1178,7 @@
     },
     {
       "columns": [],
-      "datasource": "$datasource",
+      "datasource": "Prometheus",
       "fontSize": "100%",
       "gridPos": {
         "h": 4,
@@ -1187,6 +1197,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1203,6 +1214,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1219,6 +1231,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1235,6 +1248,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1265,35 +1279,18 @@
       "type": "table"
     }
   ],
-  "schemaVersion": 21,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
-        "current": {
-          "text": "Cortex_NonProd_Runtime",
-          "value": "Cortex_NonProd_Runtime"
-        },
-        "hide": 0,
-        "includeAll": false,
-        "label": null,
-        "multi": false,
-        "name": "datasource",
-        "options": [],
-        "query": "prometheus",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "type": "datasource"
-      },
-      {
         "allValue": null,
         "current": {
-          "text": "ethos62stageva7",
-          "value": "ethos62stageva7"
+          "text": "ethos61stageva7",
+          "value": "ethos61stageva7"
         },
-        "datasource": "$datasource",
+        "datasource": "Prometheus",
         "definition": "label_values(cluster)",
         "hide": 0,
         "includeAll": false,
@@ -1315,10 +1312,10 @@
       {
         "allValue": null,
         "current": {
-          "text": "ns-team-ethos62stageva7-runtime-qe-lts",
-          "value": "ns-team-ethos62stageva7-runtime-qe-lts"
+          "text": "ns-team-ethos61stageva7-runtime-stage-lts",
+          "value": "ns-team-ethos61stageva7-runtime-stage-lts"
         },
-        "datasource": "$datasource",
+        "datasource": "Prometheus",
         "definition": "label_values(kube_namespace_labels{cluster=\"$k8s_cluster\"}, namespace)",
         "hide": 0,
         "includeAll": false,
@@ -1339,11 +1336,8 @@
       },
       {
         "allValue": null,
-        "current": {
-          "text": "rt-kafka-config-7f2aa238-77jw4",
-          "value": "rt-kafka-config-7f2aa238-77jw4"
-        },
-        "datasource": "$datasource",
+        "current": {},
+        "datasource": "Prometheus",
         "definition": "label_values(kube_pod_info, pod)",
         "hide": 0,
         "includeAll": false,
@@ -1368,7 +1362,7 @@
           "text": "172.16.27.14",
           "value": "172.16.27.14"
         },
-        "datasource": "$datasource",
+        "datasource": "Prometheus",
         "definition": "label_values(kube_pod_info{pod=\"$Pod\"}, pod_ip)",
         "hide": 0,
         "includeAll": false,
@@ -1394,7 +1388,7 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "$datasource",
+        "datasource": "Prometheus",
         "definition": "label_values(kube_pod_container_info{pod=\"$Pod\"}, container)",
         "hide": 0,
         "includeAll": true,
@@ -1436,5 +1430,5 @@
   "timezone": "",
   "title": "POD Metrics",
   "uid": "LmpdEYYWz",
-  "version": 3
+  "version": 2
 }
