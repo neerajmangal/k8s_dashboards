@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": 9564,
   "graphTooltip": 0,
-  "iteration": 1583505719856,
+  "iteration": 1584218486859,
   "links": [],
   "panels": [
     {
@@ -83,7 +83,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(increase(openwhisk_action_activations_total{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$__range]))",
+          "expr": "sum(increase(openwhisk_action_activations_total{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$__range]))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -166,7 +166,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(increase(openwhisk_action_status{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",status=\"success\",initiator=~\"$initiator\"}[$__range]))",
+          "expr": "sum(increase(openwhisk_action_status{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",status=\"success\",initiator=~\"$initiator\"}[$__range]))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -251,7 +251,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(increase(openwhisk_action_status{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",status=~\"application_error|action_developer_error\",initiator=~\"$initiator\"}[$__range]))",
+          "expr": "sum(increase(openwhisk_action_status{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",status=~\"application_error|action_developer_error\",initiator=~\"$initiator\"}[$__range]))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -336,7 +336,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(increase(openwhisk_action_status{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",status=~\"whisk_internal_error\",initiator=~\"$initiator\"}[$__range]))",
+          "expr": "sum(increase(openwhisk_action_status{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",status=~\"whisk_internal_error\",initiator=~\"$initiator\"}[$__range]))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -419,7 +419,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(increase(openwhisk_action_coldStarts_total{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$__range]))",
+          "expr": "sum(increase(openwhisk_action_coldStarts_total{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$__range]))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -515,7 +515,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(increase(openwhisk_action_status{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",status=\"success\",initiator=~\"$initiator\"}[$__range])) * 100 / sum(increase(openwhisk_action_status{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\"}[$__range]))",
+          "expr": "sum(increase(openwhisk_action_status{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",status=\"success\",initiator=~\"$initiator\"}[$__range])) * 100 / sum(increase(openwhisk_action_status{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\"}[$__range]))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A",
@@ -598,7 +598,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "max(rate(openwhisk_action_duration_seconds_sum{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$__range]) / rate(openwhisk_action_duration_seconds_count{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\"}[$__range]) > 0)",
+          "expr": "max(rate(openwhisk_action_duration_seconds_sum{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$__range]) / rate(openwhisk_action_duration_seconds_count{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\"}[$__range]) > 0)",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -682,7 +682,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "max(rate(openwhisk_action_waitTime_seconds_sum{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$__range]) / rate(openwhisk_action_waitTime_seconds_count{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\"}[$__range]) > 0)",
+          "expr": "max(rate(openwhisk_action_waitTime_seconds_sum{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$__range]) / rate(openwhisk_action_waitTime_seconds_count{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\"}[$__range]) > 0)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -730,12 +730,14 @@
       "styles": [
         {
           "alias": "Action name",
+          "align": "auto",
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "pattern": "Metric",
           "type": "string"
         },
         {
           "alias": "Memory",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -752,6 +754,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -767,7 +770,7 @@
       ],
       "targets": [
         {
-          "expr": "openwhisk_action_memory{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}",
+          "expr": "openwhisk_action_memory{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -833,7 +836,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(increase(openwhisk_action_activations_total{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval])) by (action)",
+          "expr": "sum(increase(openwhisk_action_activations_total{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval])) by (action)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -927,7 +930,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(increase(openwhisk_action_status{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",status=\"success\",initiator=~\"$initiator\"}[$interval])) by (action)",
+          "expr": "sum(increase(openwhisk_action_status{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",status=\"success\",initiator=~\"$initiator\"}[$interval])) by (action)",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1022,7 +1025,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(increase(openwhisk_action_status{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",status!=\"success\",initiator=~\"$initiator\"}[$interval])) by (action,status)",
+          "expr": "sum(increase(openwhisk_action_status{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",status!=\"success\",initiator=~\"$initiator\"}[$interval])) by (action,status)",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1121,7 +1124,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(openwhisk_action_response_size_bytes_sum{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) / rate(openwhisk_action_response_size_bytes_count{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) ",
+          "expr": "rate(openwhisk_action_response_size_bytes_sum{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) / rate(openwhisk_action_response_size_bytes_count{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) ",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{action}}",
@@ -1233,7 +1236,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(openwhisk_action_duration_seconds_sum{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) * 1000 / rate(openwhisk_action_duration_seconds_count{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) ",
+          "expr": "rate(openwhisk_action_duration_seconds_sum{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) * 1000 / rate(openwhisk_action_duration_seconds_count{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) ",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{action}}",
@@ -1338,7 +1341,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(openwhisk_action_initTime_seconds_sum{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) * 1000 / rate(openwhisk_action_initTime_seconds_count{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) ",
+          "expr": "rate(openwhisk_action_initTime_seconds_sum{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) * 1000 / rate(openwhisk_action_initTime_seconds_count{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) ",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1431,7 +1434,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(openwhisk_action_waitTime_seconds_sum{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) * 1000 / rate(openwhisk_action_waitTime_seconds_count{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) ",
+          "expr": "rate(openwhisk_action_waitTime_seconds_sum{kubernetes_namespace=~\"$k8s_namespace\",region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) * 1000 / rate(openwhisk_action_waitTime_seconds_count{region=~\"$region\",stack=~\"$stack\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\"}[$interval]) ",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1524,7 +1527,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(increase(counter_invoker_containerStart_counter_total{containerState!=\"warmed\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\",region=~\"$region\",stack=~\"$stack\"}[$interval])) by (containerState)",
+          "expr": "sum(increase(counter_invoker_containerStart_counter_total{kubernetes_namespace=~\"$k8s_namespace\",containerState!=\"warmed\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\",region=~\"$region\",stack=~\"$stack\"}[$interval])) by (containerState)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{containerState}}",
@@ -1614,7 +1617,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(increase(counter_invoker_containerStart_counter_total{containerState=\"warmed\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\",region=~\"$region\",stack=~\"$stack\"}[$interval])) by (containerState)",
+          "expr": "sum(increase(counter_invoker_containerStart_counter_total{kubernetes_namespace=~\"$k8s_namespace\",containerState=\"warmed\",namespace=~\"$namespace\",action=~\"$action\",initiator=~\"$initiator\",region=~\"$region\",stack=~\"$stack\"}[$interval])) by (containerState)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{containerState}}",
@@ -1664,7 +1667,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 21,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "openwhisk"
@@ -1673,10 +1676,7 @@
     "list": [
       {
         "allValue": null,
-        "current": {
-          "text": "ethos61stageva7",
-          "value": "ethos61stageva7"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "label_values(cluster)",
         "hide": 0,
@@ -1698,10 +1698,7 @@
       },
       {
         "allValue": null,
-        "current": {
-          "text": "ns-team-ethos61stageva7-runtime-stage-lts",
-          "value": "ns-team-ethos61stageva7-runtime-stage-lts"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "label_values(kube_namespace_labels{cluster=~\"$k8s_cluster\"}, namespace)",
         "hide": 0,
@@ -1801,10 +1798,7 @@
       },
       {
         "allValue": null,
-        "current": {
-          "text": "whisk.system",
-          "value": "whisk.system"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "query_result(sum(increase(openwhisk_action_activations_total[$__range])) by (namespace))",
         "hide": 0,
