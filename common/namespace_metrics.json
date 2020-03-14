@@ -16,12 +16,12 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 4,
-  "iteration": 1583486431771,
+  "id": 35,
+  "iteration": 1584173777583,
   "links": [],
   "panels": [
     {
-      "datasource": "$Datasource",
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 7,
         "w": 23,
@@ -57,7 +57,7 @@
         "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.5.3",
+      "pluginVersion": "6.5.2",
       "targets": [
         {
           "expr": "((kube_resourcequota{job=\"kube-state-metrics\", type=\"used\", cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"} + on (resource) + kube_resourcequota{type=\"used\",cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"} )/2)/((kube_resourcequota{job=\"kube-state-metrics\", type=\"hard\", cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"} + on (resource) + kube_resourcequota{type=\"hard\",  cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"} )/2)*100 ",
@@ -75,7 +75,7 @@
     },
     {
       "columns": [],
-      "datasource": null,
+      "datasource": "Prometheus",
       "description": "Total Available vs Used K8S Resource Quotas for namespace.",
       "fontSize": "100%",
       "gridPos": {
@@ -210,24 +210,24 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(kube_pod_status_ready)",
+          "expr": "sum(kube_pod_status_ready{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"})",
           "format": "time_series",
           "instant": false,
           "legendFormat": "Total Ready",
           "refId": "A"
         },
         {
-          "expr": "sum(kube_pod_container_status_waiting)",
+          "expr": "sum(kube_pod_container_status_waiting{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"})",
           "legendFormat": "Waiting",
           "refId": "B"
         },
         {
-          "expr": "sum(kube_pod_container_status_running)",
+          "expr": "sum(kube_pod_container_status_running{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"})",
           "legendFormat": "Running",
           "refId": "C"
         },
         {
-          "expr": "sum(kube_pod_container_status_terminated)",
+          "expr": "sum(kube_pod_container_status_terminated{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"})",
           "legendFormat": "Terminated",
           "refId": "D"
         }
@@ -316,7 +316,7 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "sum by (pod) (kube_pod_status_phase{job=\"kube-state-metrics\", phase=~\"Pending|Unknown|Failed\"} > 0) OR on() vector(0)",
+          "expr": "sum by (pod) (kube_pod_status_phase{job=\"kube-state-metrics\", phase=~\"Pending|Unknown|Failed\", cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"} > 0) OR on() vector(0)",
           "format": "time_series",
           "legendFormat": "{{pod}}",
           "refId": "A"
@@ -1335,7 +1335,7 @@
     },
     {
       "columns": [],
-      "datasource": null,
+      "datasource": "Prometheus",
       "fontSize": "100%",
       "gridPos": {
         "h": 8,
@@ -1419,13 +1419,13 @@
       ],
       "targets": [
         {
-          "expr": "kube_statefulset_status_current_revision + 0",
+          "expr": "kube_statefulset_status_current_revision{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"} + 0",
           "format": "table",
           "instant": true,
           "refId": "A"
         },
         {
-          "expr": "kube_statefulset_status_update_revision + 0",
+          "expr": "kube_statefulset_status_update_revision{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"} + 0",
           "format": "table",
           "instant": true,
           "refId": "B"
@@ -1439,7 +1439,7 @@
     },
     {
       "columns": [],
-      "datasource": "$Datasource",
+      "datasource": "Prometheus",
       "fontSize": "100%",
       "gridPos": {
         "h": 8,
@@ -1521,7 +1521,7 @@
       ],
       "targets": [
         {
-          "expr": "sum by (container, image, pod) (kube_pod_container_info)",
+          "expr": "sum by (container, image, pod) (kube_pod_container_info{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"})",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -1544,70 +1544,22 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "text": "Cortex_NonProd_Runtime",
-          "value": "Cortex_NonProd_Runtime"
-        },
-        "hide": 2,
-        "includeAll": false,
-        "label": null,
-        "multi": false,
-        "name": "Datasource",
-        "options": [],
-        "query": "prometheus",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "type": "datasource"
-      },
-      {
         "allValue": null,
         "current": {
           "tags": [],
-          "text": "ethos62stageva7",
-          "value": "ethos62stageva7"
+          "text": "ethos11stageva7",
+          "value": "ethos11stageva7"
         },
-        "datasource": "$Datasource",
+        "datasource": "Prometheus",
         "definition": "label_values(cluster)",
         "hide": 0,
         "includeAll": false,
         "label": "Cluster Name",
         "multi": false,
         "name": "k8s_cluster",
-        "options": [
-          {
-            "selected": false,
-            "text": "ethos05prodva7",
-            "value": "ethos05prodva7"
-          },
-          {
-            "selected": false,
-            "text": "ethos05stageva7",
-            "value": "ethos05stageva7"
-          },
-          {
-            "selected": false,
-            "text": "ethos11stageva7",
-            "value": "ethos11stageva7"
-          },
-          {
-            "selected": false,
-            "text": "ethos61stageva7",
-            "value": "ethos61stageva7"
-          },
-          {
-            "selected": false,
-            "text": "ethos62prodva7",
-            "value": "ethos62prodva7"
-          },
-          {
-            "selected": true,
-            "text": "ethos62stageva7",
-            "value": "ethos62stageva7"
-          }
-        ],
+        "options": [],
         "query": "label_values(cluster)",
-        "refresh": 0,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1620,11 +1572,10 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
-          "text": "ns-team-ethos62stageva7-runtime-stage-ltspr",
-          "value": "ns-team-ethos62stageva7-runtime-stage-ltspr"
+          "text": "ns-team-ethos11stageva7-runtime-dev-monitoring-nms",
+          "value": "ns-team-ethos11stageva7-runtime-dev-monitoring-nms"
         },
-        "datasource": "$Datasource",
+        "datasource": "Prometheus",
         "definition": "label_values(kube_namespace_labels{cluster=\"$k8s_cluster\"}, namespace)",
         "hide": 0,
         "includeAll": false,
@@ -1665,6 +1616,6 @@
   },
   "timezone": "",
   "title": "Namespace Metrics",
-  "uid": "T8VSOPYZk",
-  "version": 9
+  "uid": "F-7qY2XWz",
+  "version": 27
 }
