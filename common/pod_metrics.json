@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1584216581343,
+  "iteration": 1584217073553,
   "links": [],
   "panels": [
     {
@@ -82,7 +82,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "kube_pod_created{pod=~\"$Pod\", cluster=~\"$k8s_cluster\"} * 1000",
+          "expr": "kube_pod_created{pod=~\"$Pod\", cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"} * 1000",
           "instant": true,
           "refId": "A"
         }
@@ -166,7 +166,7 @@
       "tableColumn": "Value",
       "targets": [
         {
-          "expr": "(time() - kube_pod_start_time{pod=\"$Pod\"})*1000",
+          "expr": "(time() - kube_pod_start_time{pod=\"$Pod\",cluster=~\"$k8s_cluster\",namespace=~\"$k8s_namespace\"})*1000",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -252,7 +252,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "count(kube_pod_container_status_running{container=~\"$Container\", pod=\"$Pod\"})",
+          "expr": "count(kube_pod_container_status_running{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",container=~\"$Container\", pod=\"$Pod\"})",
           "format": "time_series",
           "legendFormat": "{{ container }}",
           "refId": "A"
@@ -332,7 +332,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(kube_pod_container_status_restarts_total{pod=~\"$Pod.*$\"})",
+          "expr": "sum(kube_pod_container_status_restarts_total{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",pod=~\"$Pod.*$\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "{{pod}}",
@@ -446,7 +446,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(kube_pod_container_status_waiting{pod=~\"$Pod.*$\"})",
+          "expr": "sum(kube_pod_container_status_waiting{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",pod=~\"$Pod.*$\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "{{pod}}",
@@ -596,7 +596,7 @@
       ],
       "targets": [
         {
-          "expr": "kube_pod_container_resource_limits_memory_bytes{pod=\"$Pod\", container=~\"$Container\"} /1024 / 1024 + 0 ",
+          "expr": "kube_pod_container_resource_limits_memory_bytes{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",pod=\"$Pod\", container=~\"$Container\"} /1024 / 1024 + 0 ",
           "format": "table",
           "instant": true,
           "intervalFactor": 4,
@@ -604,7 +604,7 @@
           "refId": "A"
         },
         {
-          "expr": "kube_pod_container_resource_requests_memory_bytes{pod=\"$Pod\", container=~\"$Container\"} /1024 / 1024 + 0",
+          "expr": "kube_pod_container_resource_requests_memory_bytes{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",pod=\"$Pod\", container=~\"$Container\"} /1024 / 1024 + 0",
           "format": "table",
           "instant": true,
           "intervalFactor": 4,
@@ -612,7 +612,7 @@
           "refId": "B"
         },
         {
-          "expr": "kube_pod_container_resource_limits_cpu_cores{pod=\"$Pod\", container=~\"$Container\"} + 0 ",
+          "expr": "kube_pod_container_resource_limits_cpu_cores{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",pod=\"$Pod\", container=~\"$Container\"} + 0 ",
           "format": "table",
           "instant": true,
           "intervalFactor": 4,
@@ -620,7 +620,7 @@
           "refId": "C"
         },
         {
-          "expr": "kube_pod_container_resource_requests_cpu_cores{pod=\"$Pod\", container=~\"$Container\"}",
+          "expr": "kube_pod_container_resource_requests_cpu_cores{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",pod=\"$Pod\", container=~\"$Container\"}",
           "format": "table",
           "instant": true,
           "intervalFactor": 4,
@@ -690,7 +690,7 @@
       ],
       "targets": [
         {
-          "expr": "kube_pod_container_status_ready{pod=\"$Pod\"} + 0",
+          "expr": "kube_pod_container_status_ready{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",pod=\"$Pod\"} + 0",
           "format": "table",
           "instant": true,
           "intervalFactor": 10,
@@ -769,7 +769,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(kube_pod_container_status_last_terminated_reason{reason=\"OOMKilled\", pod=\"$Pod\"} > 0 ) * 1 or (kube_pod_container_status_last_terminated_reason{reason=\"Error\", pod=\"$Pod\"} > 0 ) *2 or (kube_pod_container_status_last_terminated_reason{reason=\"ContainerCannotRun\", pod=\"$Pod\"} > 0 ) * 3 or (kube_pod_container_status_last_terminated_reason{reason=\"DeadlineExceeded\", pod=\"$Pod\"} > 0 ) * 4 or (kube_pod_container_status_last_terminated_reason{reason=\"Completed\", pod=\"$Pod\"} > 0 ) * 5",
+          "expr": "(kube_pod_container_status_last_terminated_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"OOMKilled\", pod=\"$Pod\"} > 0 ) * 1 or (kube_pod_container_status_last_terminated_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"Error\", pod=\"$Pod\"} > 0 ) *2 or (kube_pod_container_status_last_terminated_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"ContainerCannotRun\", pod=\"$Pod\"} > 0 ) * 3 or (kube_pod_container_status_last_terminated_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"DeadlineExceeded\", pod=\"$Pod\"} > 0 ) * 4 or (kube_pod_container_status_last_terminated_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"Completed\", pod=\"$Pod\"} > 0 ) * 5",
           "format": "time_series",
           "instant": true,
           "legendFormat": "",
@@ -887,7 +887,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(kube_pod_init_container_status_terminated_reason{reason=\"OOMKilled\", pod=\"$Pod\"} > 0 ) * 1 or (kube_pod_init_container_status_terminated_reason{reason=\"Error\", pod=\"$Pod\"} > 0 ) *2 or (kube_pod_init_container_status_terminated_reason{reason=\"ContainerCannotRun\", pod=\"$Pod\"} > 0 ) * 3 or (kube_pod_init_container_status_terminated_reason{reason=\"DeadlineExceeded\", pod=\"$Pod\"} > 0 ) * 4 or (kube_pod_init_container_status_terminated_reason{reason=\"Completed\", pod=\"$Pod\"} > 0 ) * 5",
+          "expr": "(kube_pod_init_container_status_terminated_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"OOMKilled\", pod=\"$Pod\"} > 0 ) * 1 or (kube_pod_init_container_status_terminated_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"Error\", pod=\"$Pod\"} > 0 ) *2 or (kube_pod_init_container_status_terminated_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"ContainerCannotRun\", pod=\"$Pod\"} > 0 ) * 3 or (kube_pod_init_container_status_terminated_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"DeadlineExceeded\", pod=\"$Pod\"} > 0 ) * 4 or (kube_pod_init_container_status_terminated_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"Completed\", pod=\"$Pod\"} > 0 ) * 5",
           "format": "time_series",
           "instant": true,
           "legendFormat": "",
@@ -1000,7 +1000,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(kube_pod_container_status_waiting_reason{reason=\"ImagePullBackOff\", pod=\"$Pod\"} > 0 ) * 1 or (kube_pod_container_status_waiting_reason{reason=\"InvalidImageName\", pod=\"$Pod\"} > 0 ) *2 or (kube_pod_container_status_waiting_reason{reason=\"CrashLoopBackOff\", pod=\"$Pod\"} > 0 ) * 3 or (kube_pod_container_status_waiting_reason{reason=\"CreateContainerConfigError\", pod=\"$Pod\"} > 0 ) * 4 or (kube_pod_container_status_waiting_reason{reason=\"ContainerCreating\", pod=\"$Pod\"} > 0 ) * 5 or (kube_pod_container_status_waiting_reason{reason=\"CreateContainerError\", pod=\"$Pod\"} > 0 ) *6 or (kube_pod_container_status_waiting_reason{reason=\"ErrImagePull\", pod=\"$Pod\"} > 0 ) *7",
+          "expr": "(kube_pod_container_status_waiting_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"ImagePullBackOff\", pod=\"$Pod\"} > 0 ) * 1 or (kube_pod_container_status_waiting_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"InvalidImageName\", pod=\"$Pod\"} > 0 ) *2 or (kube_pod_container_status_waiting_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"CrashLoopBackOff\", pod=\"$Pod\"} > 0 ) * 3 or (kube_pod_container_status_waiting_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"CreateContainerConfigError\", pod=\"$Pod\"} > 0 ) * 4 or (kube_pod_container_status_waiting_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"ContainerCreating\", pod=\"$Pod\"} > 0 ) * 5 or (kube_pod_container_status_waiting_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"CreateContainerError\", pod=\"$Pod\"} > 0 ) *6 or (kube_pod_container_status_waiting_reason{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",reason=\"ErrImagePull\", pod=\"$Pod\"} > 0 ) *7",
           "format": "time_series",
           "instant": true,
           "legendFormat": "",
@@ -1113,7 +1113,7 @@
       ],
       "targets": [
         {
-          "expr": "kube_pod_owner{pod=~\"$Pod\"} + 0",
+          "expr": "kube_pod_owner{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",pod=~\"$Pod\"} + 0",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -1266,7 +1266,7 @@
       ],
       "targets": [
         {
-          "expr": "kube_pod_container_info{pod=~\"$Pod\"} + 0",
+          "expr": "kube_pod_container_info{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",pod=~\"$Pod\"} + 0",
           "format": "table",
           "instant": true,
           "refId": "A"
@@ -1287,8 +1287,9 @@
       {
         "allValue": null,
         "current": {
-          "text": "ethos61stageva7",
-          "value": "ethos61stageva7"
+          "selected": true,
+          "text": "ethos05prodva7",
+          "value": "ethos05prodva7"
         },
         "datasource": "Prometheus",
         "definition": "label_values(cluster)",
@@ -1312,8 +1313,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "ns-team-ethos61stageva7-runtime-stage-lts",
-          "value": "ns-team-ethos61stageva7-runtime-stage-lts"
+          "text": "ns-team-ethos05prodva7-runtime-qe-lts",
+          "value": "ns-team-ethos05prodva7-runtime-qe-lts"
         },
         "datasource": "Prometheus",
         "definition": "label_values(kube_namespace_labels{cluster=\"$k8s_cluster\"}, namespace)",
@@ -1336,7 +1337,11 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "selected": true,
+          "text": "rt-kafka-config-7f2aa238-77jw4",
+          "value": "rt-kafka-config-7f2aa238-77jw4"
+        },
         "datasource": "Prometheus",
         "definition": "label_values(kube_pod_info, pod)",
         "hide": 0,
@@ -1359,6 +1364,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "172.16.27.14",
           "value": "172.16.27.14"
         },
@@ -1430,5 +1436,5 @@
   "timezone": "",
   "title": "POD Metrics",
   "uid": "LmpdEYYWz",
-  "version": 2
+  "version": 1
 }
