@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1584217073553,
+  "iteration": 1584217654248,
   "links": [],
   "panels": [
     {
@@ -371,9 +371,9 @@
       "repeatDirection": "v",
       "scopedVars": {
         "Container": {
-          "selected": false,
-          "text": "rt-kafka-config",
-          "value": "rt-kafka-config"
+          "selected": true,
+          "text": "nginx",
+          "value": "nginx"
         }
       },
       "timeFrom": null,
@@ -588,7 +588,7 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "Time|instance|job|namespace|pod|node|__name__|cluster|endpoint|prometheus|service",
+          "pattern": "instance|job|namespace|pod|node|__name__|cluster|endpoint|prometheus|service|Time",
           "thresholds": [],
           "type": "hidden",
           "unit": "short"
@@ -1062,129 +1062,10 @@
       "datasource": "Prometheus",
       "fontSize": "100%",
       "gridPos": {
-        "h": 4,
+        "h": 5,
         "w": 10,
         "x": 0,
         "y": 9
-      },
-      "id": 33,
-      "options": {},
-      "pageSize": null,
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": true
-      },
-      "styles": [
-        {
-          "alias": "",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "owner_kind|owner_is_controller|owner_name",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
-          "alias": "",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "Time|cluster|endpoint|instance|job|namespace|pod|prometheus|service|Value",
-          "thresholds": [],
-          "type": "hidden",
-          "unit": "short"
-        }
-      ],
-      "targets": [
-        {
-          "expr": "kube_pod_owner{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",pod=~\"$Pod\"} + 0",
-          "format": "table",
-          "instant": true,
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "K8S Controller Information",
-      "transform": "table",
-      "type": "table"
-    },
-    {
-      "columns": [],
-      "datasource": "Prometheus",
-      "fontSize": "100%",
-      "gridPos": {
-        "h": 4,
-        "w": 12,
-        "x": 10,
-        "y": 10
-      },
-      "id": 30,
-      "options": {},
-      "pageSize": null,
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": true
-      },
-      "styles": [
-        {
-          "alias": "",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "Time|instance|job|namespace|pod|node|__name__|cluster|endpoint|prometheus|service|Value",
-          "thresholds": [],
-          "type": "hidden",
-          "unit": "short"
-        }
-      ],
-      "targets": [
-        {
-          "expr": "kube_pod_labels{pod=~\"$Pod\"} + 0 ",
-          "format": "table",
-          "instant": true,
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Pod Labels",
-      "transform": "table",
-      "type": "table"
-    },
-    {
-      "columns": [],
-      "datasource": "Prometheus",
-      "fontSize": "100%",
-      "gridPos": {
-        "h": 4,
-        "w": 10,
-        "x": 0,
-        "y": 13
       },
       "id": 35,
       "options": {},
@@ -1258,7 +1139,7 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "Time|cluster|endpoint|container_id|pod|instance|job|prometheus|service|Value|namespace",
+          "pattern": "cluster|endpoint|container_id|pod|instance|job|prometheus|service|Value|namespace|Time",
           "thresholds": [],
           "type": "hidden",
           "unit": "short"
@@ -1277,6 +1158,142 @@
       "title": "Container Images",
       "transform": "table",
       "type": "table"
+    },
+    {
+      "columns": [],
+      "datasource": "Prometheus",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 10,
+        "y": 10
+      },
+      "id": 33,
+      "options": {},
+      "pageSize": null,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "owner_kind|owner_is_controller|owner_name",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Time|cluster|endpoint|instance|job|namespace|pod|prometheus|service|Value",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "kube_pod_owner{cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\",pod=~\"$Pod\"} + 0",
+          "format": "table",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "K8S Controller Information",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "columns": [],
+      "datasource": "Prometheus",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 4,
+        "w": 14,
+        "x": 0,
+        "y": 14
+      },
+      "id": 30,
+      "options": {},
+      "pageSize": null,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Time|instance|job|namespace|pod|node|__name__|cluster|endpoint|prometheus|service|Value",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "label_app_kubernetes_io_component",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "kube_pod_labels{pod=~\"$Pod\", cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"} + 0 ",
+          "format": "table",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Pod Labels",
+      "transform": "table",
+      "type": "table"
     }
   ],
   "schemaVersion": 22,
@@ -1286,11 +1303,7 @@
     "list": [
       {
         "allValue": null,
-        "current": {
-          "selected": true,
-          "text": "ethos05prodva7",
-          "value": "ethos05prodva7"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "label_values(cluster)",
         "hide": 0,
@@ -1312,10 +1325,7 @@
       },
       {
         "allValue": null,
-        "current": {
-          "text": "ns-team-ethos05prodva7-runtime-qe-lts",
-          "value": "ns-team-ethos05prodva7-runtime-qe-lts"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "label_values(kube_namespace_labels{cluster=\"$k8s_cluster\"}, namespace)",
         "hide": 0,
@@ -1337,11 +1347,7 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": true,
-          "text": "rt-kafka-config-7f2aa238-77jw4",
-          "value": "rt-kafka-config-7f2aa238-77jw4"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "label_values(kube_pod_info, pod)",
         "hide": 0,
@@ -1363,11 +1369,7 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": true,
-          "text": "172.16.27.14",
-          "value": "172.16.27.14"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "label_values(kube_pod_info{pod=\"$Pod\"}, pod_ip)",
         "hide": 0,
@@ -1389,11 +1391,7 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "label_values(kube_pod_container_info{pod=\"$Pod\"}, container)",
         "hide": 0,
