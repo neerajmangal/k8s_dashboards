@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1580164337194,
+  "iteration": 1584219658867,
   "links": [],
   "panels": [
     {
@@ -60,6 +60,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -77,10 +78,10 @@
         "lineColor": "#9ac48a",
         "show": true
       },
-      "tableColumn": "Value",
+      "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(increase(openwhisk_action_status{status=\"success\"}[${__range_s}s]))",
+          "expr": "sum(increase(openwhisk_action_status{status=\"success\", kubernetes_namespace=~\"$k8s_namespace\"}[${__range_s}s]))",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -143,6 +144,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -160,10 +162,10 @@
         "lineColor": "#8AB8FF",
         "show": true
       },
-      "tableColumn": "Value",
+      "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(increase(openwhisk_action_coldStarts_total[${__range_s}s]))",
+          "expr": "sum(increase(openwhisk_action_coldStarts_total{kubernetes_namespace=~\"$k8s_namespace\"}[${__range_s}s]))",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -227,6 +229,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -247,7 +250,7 @@
       "tableColumn": "Value",
       "targets": [
         {
-          "expr": "sum(increase(openwhisk_action_status{status=\"internal_error\"}[${__range_s}s]))",
+          "expr": "sum(increase(openwhisk_action_status{kubernetes_namespace=~\"$k8s_namespace\",status=\"internal_error\"}[${__range_s}s]))",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -268,6 +271,7 @@
       "valueName": "current"
     },
     {
+      "datasource": null,
       "folderId": null,
       "gridPos": {
         "h": 3,
@@ -279,6 +283,7 @@
       "id": 8,
       "limit": 10,
       "links": [],
+      "options": {},
       "query": "",
       "recent": false,
       "search": true,
@@ -296,12 +301,14 @@
       "dashes": false,
       "datasource": "Prometheus",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 8,
         "w": 24,
         "x": 0,
         "y": 3
       },
+      "hiddenSeries": false,
       "id": 2,
       "legend": {
         "avg": false,
@@ -316,14 +323,14 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "OpenWhisk - Top Namespaces",
-          "keepTime": true,
           "title": "OpenWhisk - Top Namespaces",
-          "type": "dashboard",
-          "url": "/d/RnvlchiZk/openwhisk-top-namespaces"
+          "url": "/d/RnvlchiZk/openwhisk-top-namespaces?$__url_time_range"
         }
       ],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -334,7 +341,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(increase(openwhisk_action_activations_total[$interval]))",
+          "expr": "sum(increase(openwhisk_action_activations_total{kubernetes_namespace=~\"$k8s_namespace\"}[$interval]))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -389,12 +396,14 @@
       "datasource": "Prometheus",
       "description": "",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 8,
         "w": 12,
         "x": 0,
         "y": 11
       },
+      "hiddenSeries": false,
       "id": 10,
       "legend": {
         "avg": false,
@@ -411,6 +420,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -421,7 +433,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(openwhisk_action_waitTime_seconds_sum[$interval]) * 1000 / rate(openwhisk_action_waitTime_seconds_count[$interval]) ",
+          "expr": "rate(openwhisk_action_waitTime_seconds_sum{kubernetes_namespace=~\"$k8s_namespace\"}[$interval]) * 1000 / rate(openwhisk_action_waitTime_seconds_count[$interval]) ",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -479,12 +491,14 @@
       "datasource": "Prometheus",
       "description": "",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 8,
         "w": 12,
         "x": 12,
         "y": 11
       },
+      "hiddenSeries": false,
       "id": 11,
       "legend": {
         "avg": false,
@@ -501,6 +515,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -511,7 +528,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(openwhisk_action_response_size_bytes_sum[$interval]) / rate(openwhisk_action_response_size_bytes_count[$interval]) ",
+          "expr": "rate(openwhisk_action_response_size_bytes_sum{kubernetes_namespace=~\"$k8s_namespace\"}[$interval]) / rate(openwhisk_action_response_size_bytes_count{kubernetes_namespace=~\"$k8s_namespace\"}[$interval]) ",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -566,13 +583,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 8,
         "w": 12,
         "x": 0,
         "y": 19
       },
+      "hiddenSeries": false,
       "id": 13,
       "legend": {
         "avg": false,
@@ -587,6 +607,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -597,7 +620,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(increase(counter_invoker_containerStart_counter_total{containerState!=\"warmed\"}[$interval])) by (containerState)",
+          "expr": "sum(increase(counter_invoker_containerStart_counter_total{kubernetes_namespace=~\"$k8s_namespace\",containerState!=\"warmed\"}[$interval])) by (containerState)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -651,13 +674,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 8,
         "w": 12,
         "x": 12,
         "y": 19
       },
+      "hiddenSeries": false,
       "id": 14,
       "interval": "",
       "legend": {
@@ -673,6 +699,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -683,7 +712,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(increase(counter_invoker_containerStart_counter_total{containerState=\"warmed\"}[$interval])) by (containerState)",
+          "expr": "sum(increase(counter_invoker_containerStart_counter_total{kubernetes_namespace=~\"$k8s_namespace\",containerState=\"warmed\"}[$interval])) by (containerState)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -734,7 +763,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 18,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "openwhisk"
@@ -746,6 +775,7 @@
         "auto_count": 30,
         "auto_min": "30s",
         "current": {
+          "selected": true,
           "text": "auto",
           "value": "$__auto_interval_interval"
         },
@@ -818,6 +848,66 @@
         "refresh": 2,
         "skipUrlSync": false,
         "type": "interval"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "Prometheus",
+        "definition": "label_values(cluster)",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "k8s_cluster",
+        "options": [],
+        "query": "label_values(cluster)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "Prometheus",
+        "definition": "label_values(kube_namespace_labels{cluster=\"$k8s_cluster\"}, namespace)",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "k8s_namespace",
+        "options": [
+          {
+            "selected": true,
+            "text": "ns-team-ethos62stageva7-runtime-dev-nmstest",
+            "value": "ns-team-ethos62stageva7-runtime-dev-nmstest"
+          },
+          {
+            "selected": false,
+            "text": "ns-team-ethos62stageva7-runtime-qe-lts",
+            "value": "ns-team-ethos62stageva7-runtime-qe-lts"
+          },
+          {
+            "selected": false,
+            "text": "ns-team-ethos62stageva7-runtime-stage-ltspr",
+            "value": "ns-team-ethos62stageva7-runtime-stage-ltspr"
+          }
+        ],
+        "query": "label_values(kube_namespace_labels{cluster=\"$k8s_cluster\"}, namespace)",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },
@@ -853,5 +943,5 @@
   "timezone": "",
   "title": "OpenWhisk - Global Metrics",
   "uid": "Kw4jl2iZz",
-  "version": 9
+  "version": 10
 }
