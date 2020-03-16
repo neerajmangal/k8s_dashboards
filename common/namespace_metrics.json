@@ -16,8 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 35,
-  "iteration": 1584173777583,
+  "iteration": 1584351855558,
   "links": [],
   "panels": [
     {
@@ -35,29 +34,35 @@
             "max"
           ],
           "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
             "mappings": [],
             "max": 100,
             "min": 0,
-            "thresholds": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
             "unit": "percent"
           },
-          "override": {},
+          "overrides": [],
           "values": false
         },
         "orientation": "auto",
         "showThresholdLabels": true,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.5.2",
+      "pluginVersion": "6.6.0",
       "targets": [
         {
           "expr": "((kube_resourcequota{job=\"kube-state-metrics\", type=\"used\", cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"} + on (resource) + kube_resourcequota{type=\"used\",cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"} )/2)/((kube_resourcequota{job=\"kube-state-metrics\", type=\"hard\", cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"} + on (resource) + kube_resourcequota{type=\"hard\",  cluster=~\"$k8s_cluster\", namespace=~\"$k8s_namespace\"} )/2)*100 ",
@@ -97,6 +102,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -113,6 +119,7 @@
         },
         {
           "alias": "Limits",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -129,6 +136,7 @@
         },
         {
           "alias": "Used",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -661,6 +669,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -675,6 +684,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -691,6 +701,7 @@
         },
         {
           "alias": "Current",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -707,6 +718,7 @@
         },
         {
           "alias": "Ready",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -723,6 +735,7 @@
         },
         {
           "alias": "Requested",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -969,6 +982,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -983,6 +997,7 @@
         },
         {
           "alias": "Requested",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -999,6 +1014,7 @@
         },
         {
           "alias": "Available",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1015,6 +1031,7 @@
         },
         {
           "alias": "Unavailble",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1031,6 +1048,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1274,6 +1292,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1288,6 +1307,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1304,6 +1324,7 @@
         },
         {
           "alias": "Created On ",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1354,6 +1375,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1370,6 +1392,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1386,6 +1409,7 @@
         },
         {
           "alias": "Current",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1402,6 +1426,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1458,6 +1483,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1472,6 +1498,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1488,6 +1515,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1504,6 +1532,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1535,7 +1564,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 21,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "namespace",
@@ -1545,11 +1574,7 @@
     "list": [
       {
         "allValue": null,
-        "current": {
-          "tags": [],
-          "text": "ethos11stageva7",
-          "value": "ethos11stageva7"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "label_values(cluster)",
         "hide": 0,
@@ -1571,19 +1596,16 @@
       },
       {
         "allValue": null,
-        "current": {
-          "text": "ns-team-ethos11stageva7-runtime-dev-monitoring-nms",
-          "value": "ns-team-ethos11stageva7-runtime-dev-monitoring-nms"
-        },
+        "current": {},
         "datasource": "Prometheus",
-        "definition": "label_values(kube_namespace_labels{cluster=\"$k8s_cluster\"}, namespace)",
+        "definition": "label_values(kube_namespace_annotations{cluster=\"$k8s_cluster\"}, namespace)",
         "hide": 0,
         "includeAll": false,
         "label": "Kubernetes Namespace",
         "multi": false,
         "name": "k8s_namespace",
         "options": [],
-        "query": "label_values(kube_namespace_labels{cluster=\"$k8s_cluster\"}, namespace)",
+        "query": "label_values(kube_namespace_annotations{cluster=\"$k8s_cluster\"}, namespace)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1617,5 +1639,5 @@
   "timezone": "",
   "title": "Namespace Metrics",
   "uid": "F-7qY2XWz",
-  "version": 27
+  "version": 1
 }

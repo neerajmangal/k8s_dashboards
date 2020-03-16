@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1584217654248,
+  "iteration": 1584352273616,
   "links": [],
   "panels": [
     {
@@ -371,9 +371,9 @@
       "repeatDirection": "v",
       "scopedVars": {
         "Container": {
-          "selected": true,
-          "text": "nginx",
-          "value": "nginx"
+          "selected": false,
+          "text": "rt-kafka-config",
+          "value": "rt-kafka-config"
         }
       },
       "timeFrom": null,
@@ -1327,14 +1327,14 @@
         "allValue": null,
         "current": {},
         "datasource": "Prometheus",
-        "definition": "label_values(kube_namespace_labels{cluster=\"$k8s_cluster\"}, namespace)",
+        "definition": "label_values(kube_namespace_annotations{cluster=\"$k8s_cluster\"}, namespace)",
         "hide": 0,
         "includeAll": false,
         "label": "Kubernetes Namespace",
         "multi": false,
         "name": "k8s_namespace",
         "options": [],
-        "query": "label_values(kube_namespace_labels{cluster=\"$k8s_cluster\"}, namespace)",
+        "query": "label_values(kube_namespace_annotations{cluster=\"$k8s_cluster\"}, namespace)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1391,7 +1391,11 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": "Prometheus",
         "definition": "label_values(kube_pod_container_info{pod=\"$Pod\"}, container)",
         "hide": 0,
@@ -1434,5 +1438,5 @@
   "timezone": "",
   "title": "POD Metrics",
   "uid": "LmpdEYYWz",
-  "version": 1
+  "version": 2
 }

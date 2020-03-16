@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": 9564,
   "graphTooltip": 0,
-  "iteration": 1584218486859,
+  "iteration": 1584352418834,
   "links": [],
   "panels": [
     {
@@ -1700,14 +1700,14 @@
         "allValue": null,
         "current": {},
         "datasource": "Prometheus",
-        "definition": "label_values(kube_namespace_labels{cluster=~\"$k8s_cluster\"}, namespace)",
+        "definition": "label_values(kube_namespace_annotations{cluster=~\"$k8s_cluster\"}, namespace)",
         "hide": 0,
         "includeAll": false,
         "label": null,
         "multi": false,
         "name": "k8s_namespace",
         "options": [],
-        "query": "label_values(kube_namespace_labels{cluster=~\"$k8s_cluster\"}, namespace)",
+        "query": "label_values(kube_namespace_annotations{cluster=~\"$k8s_cluster\"}, namespace)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1721,7 +1721,7 @@
       {
         "allValue": "",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
@@ -1747,7 +1747,7 @@
       {
         "allValue": "",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
@@ -1798,7 +1798,11 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "selected": true,
+          "text": "bladerunner-test",
+          "value": "bladerunner-test"
+        },
         "datasource": "Prometheus",
         "definition": "query_result(sum(increase(openwhisk_action_activations_total[$__range])) by (namespace))",
         "hide": 0,
@@ -1957,5 +1961,5 @@
   "timezone": "",
   "title": "Openwhisk - Action Performance Metrics",
   "uid": "Oew1lvymk",
-  "version": 1
+  "version": 2
 }
